@@ -38,14 +38,14 @@ def process_file(data_file):
         for i in range(num_items):
             # split whitespace
             price_weight = infile.readline().strip()
-            price_weight = price_weight.split(' ')
+            pair = price_weight.split(' ')
 
             # convert to integers
-            price_weight[0] = int(price_weight[0])
-            prices.append(price_weight[0])
+            pair[0] = int(pair[0])
+            prices.append(pair[0])
 
-            price_weight[1] = int(price_weight[1])
-            weights.append(price_weight[1])
+            pair[1] = int(pair[1])
+            weights.append(pair[1])
 
         case.append(prices)
         case.append(weights)
