@@ -25,11 +25,60 @@ def process_file(data_file):
     index = 0
 
     # grab data from file
-    for line in infile:
+    data = infile.readlines()
+    infile.close()
+
+    for i in range(len(data)):
+        data[i] = data[i].strip()
+
+    line = 0
+    while line < len(data):
+        case = []
+        num_items = int(data[line])
+
+        # grab the prices and the weights
+        prices = []
+        weights = []
+
+        for j in range(num_items):
+            line += 1
+
+            price_weight = data[line].split()
+
+            # convert to integers
+            price_weight[0] = int(price_weight[0])
+            price_weight[1] = int(price_weight[1])
+
+            prices.append(price_weight[0])
+            weights.append(price_weight[1])
+
+        case.append(prices)
+        case.append(weights)
+
+        # grab the capacities
+        line += 1
+        num_capacities = int(data[line])
+
+        max_capacities = []
+
+        for j in range(num_capacities):
+            line += 1
+            capacity = int(data[line])
+
+            max_capacities.append(capacity)
+
+        case.append(max_capacities)
+        test_cases[index] = case
+        index += 1
+        line += 1
+
+    """
+        print(line)
         case = []
 
         # grab num of items
-        num_items = int(line.strip())
+        num_items = str(line.strip())
+        num_items = int(num_items)
 
         prices = []
         weights = []
@@ -38,12 +87,15 @@ def process_file(data_file):
         for i in range(num_items):
             # split whitespace
             price_weight = infile.readline().strip()
+            print(price_weight)
             pair = price_weight.split(' ')
 
             # convert to integers
+            pair[0] = str(pair[0])
             pair[0] = int(pair[0])
             prices.append(pair[0])
 
+            pair[1] = str(pair[1])
             pair[1] = int(pair[1])
             weights.append(pair[1])
 
@@ -63,9 +115,7 @@ def process_file(data_file):
 
         test_cases[index] = case
         index += 1
-
-    # close file
-    infile.close()
+        """
 
     out = ""
 
